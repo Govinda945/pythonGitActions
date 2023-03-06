@@ -31,6 +31,12 @@ jobs:
         pip install pytest
         export PYTHONPATH=src
         pytest
+    - name: Test with Checkov
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: example/
+          framework: terraform 
     - name: Deploy to Heroku
       env:
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
